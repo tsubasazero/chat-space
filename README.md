@@ -36,6 +36,7 @@ Things you may want to cover:
 ## groupsテーブル
 Column|Type|Options|
 |------|----|-------|
+|group_id|integer|null: false, foreign_key: true|
 |name|name|null: false|
 ### Association
 - has_many :comments

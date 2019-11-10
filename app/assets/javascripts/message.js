@@ -1,5 +1,6 @@
 function buildHTML(message){  
-    var　img = message.image ? `<img src=${message.image}>` : "" ;
+  if ( message.image ) {
+    img = message.image ? `<img src=${message.image}>` : "" ;
     var html =
      `<div class="message" data-message-id=${message.id}>
         <div class="upper-message">
@@ -21,7 +22,7 @@ function buildHTML(message){
     return html;
   };
   
-  setInterval(reloadMessages, 5000);
+  
 
 $('.js-form').on('submit', function(e){
 e.preventDefault();

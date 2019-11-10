@@ -1,5 +1,4 @@
-function buildHTML(message){
-  
+function buildHTML(message){  
     var　img = message.image ? `<img src=${message.image}>` : "" ;
     var html =
      `<div class="message" data-message-id=${message.id}>

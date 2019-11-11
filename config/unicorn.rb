@@ -8,13 +8,12 @@ worker_processes 1
 # currentを指定
 working_directory "#{app_path}/current"
 
+# それぞれ、sharedの中を参照するよう変更
 #Unicornの起動に必要なファイルの設置場所を指定
-pid "#{app_path}/tmp/pids/unicorn.pid"
+pid "#{app_path}/shared/tmp/pids/unicorn.pid"
 
 #ポート番号を指定
-# それぞれ、sharedの中を参照するよう変更
 listen "#{app_path}/shared/tmp/sockets/unicorn.sock"
-pid "#{app_path}/shared/tmp/pids/unicorn.pid"
 
 #エラーのログを記録するファイルを指定
 stderr_path "#{app_path}/shared/log/unicorn.stderr.log"

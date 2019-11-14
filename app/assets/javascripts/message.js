@@ -1,8 +1,8 @@
 $(function() {
 function buildHTML(message){  
-    var　img = message.image ? `<img src=${message.image}>` : "" ;
+    var　img = message.image ? `<img src="${message.image}">` : "" ;
     var html =
-     `<div class="message" data-message-id=${message.id}>
+     `<div class="message" data-message-id="${message.id}">
         <div class="upper-message">
           <div class="upper-message__user-name">
             ${message.user_name}
@@ -22,9 +22,8 @@ function buildHTML(message){
     return html;
   };
   
-  setInterval(reloadMessages, 5000);
-
-$('.new_message').on('submit', function(e){
+  
+  $('.new_message').on('submit', function(e){
 e.preventDefault();
 var formData = new FormData(this);
 var url = $(this).attr('action')
@@ -36,13 +35,13 @@ $.ajax({
   processData: false,
   contentType: false
 })
- .done(function(data){
+.done(function(data){
    var html = buildHTML(data);
    $('.messages').append(html);
    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');   
    $('form')[0].reset();
    $('.form__submit').prop('disabled', false);
- })
+  })
   .fail(function(){
     alert('error');
     // console.log('error');
@@ -60,7 +59,7 @@ var reloadMessages = function() {
     //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
     url: "api/messages",
     //ルーティングで設定した通りhttpメソッドをgetに指定
-    type: 'get',
+    type: 'GET',
     dataType: 'json',
     //dataオプションでリクエストに値を含める
     data: {id: last_message_id}
@@ -70,11 +69,11 @@ var reloadMessages = function() {
     messages.forEach(function (message) {
 
       //htmlを作り出して、それを変数に代入(作り出す処理は非同期の時に作った)
-              insertHTML = buildHTML(message); 
+      insertHTML = buildHTML(message); 
       
       //変数に代入されたhtmlをmessagesクラスにぶち込む
-              $('.messages').append(insertHTML);
-            })
+      $('.messages').append(insertHTML);
+    })
   })
 
   .fail(function() {
@@ -82,4 +81,6 @@ var reloadMessages = function() {
   });
 };
 }
+setInterval(reloadMessages, 5000);
 })
+

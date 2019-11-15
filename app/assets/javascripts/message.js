@@ -54,7 +54,8 @@ $.ajax({
 var reloadMessages = function() {
   if (window.location.href.match(/\/groups\/\d+\/messages/)){
   //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
-  last_message_id =　$('.message:last').data("message-id");
+  var last_message_id =　$('.message:last').data("message-id");
+  
   $.ajax({
     //ルーティングで設定した通り/groups/id番号/api/messagesとなるよう文字列を書く
     url: "api/messages",
@@ -73,6 +74,7 @@ var reloadMessages = function() {
       
       //変数に代入されたhtmlをmessagesクラスにぶち込む
       $('.messages').append(insertHTML);
+      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
     })
   })
 
@@ -83,4 +85,3 @@ var reloadMessages = function() {
 }
 setInterval(reloadMessages, 5000);
 })
-
